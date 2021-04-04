@@ -23,11 +23,11 @@ app.get('/:site/:file', async (req, resp) => {
     let parsed = '';
     if(req.query.num) {
         // 一部
-        const md = await parser.readTarget(filePath, '##', Number(req.query.num));
+        const md = await parser.readTarget(filePath, '##', Number(req.query.num)).catch(any => '');
         parsed = parser.parseStr(md);
     } else {
         // 全部
-        const md = await parser.parse(filePath);
+        const md = await parser.parse(filePath).catch(err => err);
         parsed = md.html || '';
     }
 

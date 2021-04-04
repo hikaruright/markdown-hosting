@@ -87,9 +87,9 @@ export default class MarkdownParser {
         
                 const parsed = marked.parse(file.toString())
         
-                return { html: parsed, err: null };
+                resolve({ html: parsed, err: null });
             } catch(e) {
-                reject(e);
+                reject({ html: null, err: e});
             }
         })
     }
