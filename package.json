@@ -8,7 +8,7 @@
     "test": "jest",
     "build:scss": "sass ./resources/app.scss:./dist/app.css",
     "build": "tsc & sass resources/app.scss dist/resources/app.css",
-    "app": "npm run build & node dist/app.js"
+    "app": "node dist/app.js"
   },
   "keywords": [],
   "author": "",
