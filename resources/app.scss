@@ -1,0 +1,36 @@
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 24px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+h2 {
+    font-size: 1.5em;
+    padding-bottom: .3em;
+    border-bottom: 1px solid #d4d4d4;
+}
+
+h3 {
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+h4 {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+p, ul {
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+pre {
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #d4d4d4;;
+    border-radius: 6px;
+}

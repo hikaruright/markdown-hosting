@@ -1,7 +1,7 @@
 import express from 'express'
-import MarkdownParser from './components/parser';
+import MarkdownParser from './components/parser'
 import path from 'path'
-import { parse } from 'marked';
+import MakeHTML from './components/make-html'
 
 const app: express.Express = express();
 const router = express.Router();
@@ -31,9 +31,7 @@ app.get('/:site/:file', async (req, resp) => {
         parsed = md.html || '';
     }
 
-    console.log(parsed)
-
-    resp.send(parsed);
+    resp.send(MakeHTML.make(parsed));
 });
 
 // Starting Server.
