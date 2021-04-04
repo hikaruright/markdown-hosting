@@ -78,13 +78,19 @@ export default class MarkdownParser {
      */
     async parse(path: string): Promise<{ html: string | null, err: any }> {
 
-        const file = fs.readFileSync(path);
-        if (!file) {
-            return { html: null, err: 'File Reading Error.' };
-        }
-
-        const parsed = marked.parse(file.toString())
-
-        return { html: parsed, err: null };
+        return new Promise((resolve, reject) => {
+            try{
+                const file = fs.readFileSync(path);
+                if (!file) {
+                    return { html: null, err: 'File Reading Error.' };
+                }
+        
+                const parsed = marked.parse(file.toString())
+        
+                return { html: parsed, err: null };
+            } catch(e) {
+                reject(e);
+            }
+        })
     }
 }
