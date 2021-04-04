@@ -9,7 +9,7 @@ version: '3'
 
 services:
   app:
-    image: hikaruright/md-hosting:0.1
+    image: hikaruright/md-hosting:0.2
     ports:
       - 3000:3000
     volumes:
