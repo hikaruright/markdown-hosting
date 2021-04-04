@@ -1,3 +1,5 @@
 node_modules/
-!sites/test/
 sites/*
+!sites/test/
+!sites/test/*
+dist/
