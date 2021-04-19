@@ -381,7 +381,7 @@ const css = `
 .markdown-body tt:after,
 .markdown-body tt:before {
     letter-spacing: -0.2em;
-    content: "\00a0";
+    content: "\\00a0";
 }
 .markdown-body code br,
 .markdown-body tt br {
@@ -1176,7 +1176,7 @@ export default class MakeHTML {
             <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
             <script>
               $(function(){
-                $('a[href^=http]').not('[href *=' + location.hostname + ' ]').attr('target' , '_blank');
+                $('a[href^=http]').attr('target' , '_blank');
               });
             </script>
         </head>
