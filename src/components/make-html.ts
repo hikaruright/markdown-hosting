@@ -277,7 +277,7 @@ const css = `
     background-color: #f8f8f8;
 }
 .markdown-body img {
-    max-width: 100%;
+    max-width: 540px;
     box-sizing: content-box;
     background-color: #fff;
 }
@@ -381,7 +381,7 @@ const css = `
 .markdown-body tt:after,
 .markdown-body tt:before {
     letter-spacing: -0.2em;
-    content: "\00a0";
+    content: "\\00a0";
 }
 .markdown-body code br,
 .markdown-body tt br {
