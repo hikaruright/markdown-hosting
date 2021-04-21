@@ -10,7 +10,9 @@ export default class MakeIndex {
 
     public static make(pages: string[], sitename: string) {
 
-        let css = '';
+        let css = `
+         div{ line-height: 2; }
+        `;
 
         let body = '';
 
