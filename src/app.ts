@@ -2,14 +2,33 @@ import express from 'express'
 import MarkdownParser from './components/parser'
 import path from 'path'
 import MakeHTML from './components/make-html'
+import MakeIndex from './components/make-index'
+import fs from 'fs'
 
 const app: express.Express = express();
 const router = express.Router();
 
 const parser = new MarkdownParser();
 
-// publish static files.
-app.use(express.static('sites'));
+// gettings list of markdown files
+app.get('/:site/list', async (req, resp) => {
+    
+    try {
+        const site = req.params.site;
+
+        console.log(`show list of ${site}`);
+    
+        const dirPath = path.resolve(__dirname, '../', 'sites', req.params.site);
+    
+        const files = fs.readdirSync(dirPath).filter(val => val.endsWith('.md'))
+    
+        resp.send(MakeIndex.make(files, site));
+    }catch(e) {
+        console.error(e);
+        resp.status(404);
+        resp.send('Error.');
+    }
+})
 
 // getting format
 app.get('/:site/:file', async (req, resp) => {
@@ -18,7 +37,12 @@ app.get('/:site/:file', async (req, resp) => {
     // console.log(req.query.num);
     console.log(`read from ${req.params.site}/${req.params.file} of page ${req.query.num}`)
     
-    const filePath = path.resolve(__dirname, '../', 'sites', req.params.site, req.params.file + '.md');
+    let filename = req.params.file;
+    if (!filename.endsWith('.md')) {
+        filename += '.md';
+    }
+
+    const filePath = path.resolve(__dirname, '../', 'sites', req.params.site, filename);
 
     let parsed = '';
     if(req.query.num) {
@@ -33,6 +57,10 @@ app.get('/:site/:file', async (req, resp) => {
 
     resp.send(MakeHTML.make(parsed));
 });
+
+// publish static files.
+app.use(express.static('sites'));
+
 
 // Starting Server.
 app.listen(process.env.PORT || '3000', () => {
