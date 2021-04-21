@@ -25,3 +25,7 @@ git config --global user.email "<Uour mail address>"
 
 MarkdownまたはTextファイルを作成することで、
 校正ツールが効きます。
+
+[test](https://google.com)
+
+[test2](./multisplit)
