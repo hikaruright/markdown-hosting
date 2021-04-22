@@ -36,13 +36,20 @@ app.get('/:site/:file', async (req, resp) => {
     // console.log(req.params.file);
     // console.log(req.query.num);
     console.log(`read from ${req.params.site}/${req.params.file} of page ${req.query.num}`)
-    
+
     let filename = req.params.file;
-    if (!filename.endsWith('.md')) {
+    const filePath = path.resolve(__dirname, '../', 'sites', req.params.site, filename);
+
+    if(filename.endsWith('.md')) {
+        // nothing to do.
+    }if (filename.includes('.')) {
+        console.log('return static file.');
+        resp.sendFile(filePath);
+        return;
+    }else if (!filename.endsWith('.md')) {
+        console.log('the markdown');
         filename += '.md';
     }
-
-    const filePath = path.resolve(__dirname, '../', 'sites', req.params.site, filename);
 
     let parsed = '';
     if(req.query.num) {
