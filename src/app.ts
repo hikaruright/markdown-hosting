@@ -35,21 +35,22 @@ app.get('/:site/:file', async (req, resp) => {
     // console.log(req.params.site);
     // console.log(req.params.file);
     // console.log(req.query.num);
-    console.log(`read from ${req.params.site}/${req.params.file} of page ${req.query.num}`)
+    // console.log(`read from ${req.params.site}/${req.params.file} of page ${req.query.num}`)
 
-    let filename = req.params.file;
-    const filePath = path.resolve(__dirname, '../', 'sites', req.params.site, filename);
+    const filename = req.params.file;
+    let filePath = path.resolve(__dirname, '../', 'sites', req.params.site, filename);
 
     if(filename.endsWith('.md')) {
         // nothing to do.
-        // console.log('primitive ')
-    }if (filename.includes('.')) {
+        // console.log('primitive markdown');
+    } else if (filename.includes('.')) {
         // console.log('return static file.');
         resp.sendFile(filePath);
+        
         return;
-    }else if (!filename.endsWith('.md')) {
+    } else {
         // console.log('the markdown');
-        filename += '.md';
+        filePath += '.md';
     }
 
     let parsed = '';
