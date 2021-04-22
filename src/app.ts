@@ -42,12 +42,13 @@ app.get('/:site/:file', async (req, resp) => {
 
     if(filename.endsWith('.md')) {
         // nothing to do.
+        // console.log('primitive ')
     }if (filename.includes('.')) {
-        console.log('return static file.');
+        // console.log('return static file.');
         resp.sendFile(filePath);
         return;
     }else if (!filename.endsWith('.md')) {
-        console.log('the markdown');
+        // console.log('the markdown');
         filename += '.md';
     }
 
