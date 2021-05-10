@@ -277,9 +277,12 @@ const css = `
     background-color: #f8f8f8;
 }
 .markdown-body img {
-    max-width: 540px;
+    width: 100%;
+    max-width: 640px;
     box-sizing: content-box;
     background-color: #fff;
+    display: block;
+    margin: 0 auto;
 }
 .markdown-body img[align="right"] {
     padding-left: 20px;
