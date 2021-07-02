@@ -1,5 +1,5 @@
 import fs from 'fs'
-import marked from 'marked'
+import marked, { Renderer } from 'marked'
 import highlightjs from 'highlight.js'
 import readline from 'readline'
 

@@ -1148,6 +1148,29 @@ body.modal-open {
     overflow-y: auto;
     padding-right: 0 !important;
 }
+
+.hljs {
+    position: relative;
+    border-radius: 2px;
+    overflow: hidden;
+
+    &[data-filename] {
+        padding-top: 1.8em;
+
+        &::before {
+            content: attr(data-filename);
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 0 .3em;
+            color: $font-color-default;
+            font-size: .93em;
+            background-color: rgba(#fff, .8);
+            border-bottom-left-radius: 2px;
+        }
+    }
+}
+
 `;
 
 export default class MakeHTML {
@@ -1180,6 +1203,24 @@ export default class MakeHTML {
             <script>
               $(function(){
                 $('a[href^=http]').attr('target' , '_blank');
+              });
+
+              document.addEventListener('DOMContentLoaded', () => {
+                const code = document.getElementsByTagName('code');
+              
+                Array.from(code).forEach(el => {
+                  if (el.className) {
+                    const s = el.className.split(':');
+                    const highlightLang = s[0];
+                    const filename = s[1];
+                    if (filename) {
+                      el.classList.remove(el.className);
+                      el.classList.add(highlightLang);
+                      el.parentElement.setAttribute('data-lang', filename);
+                      el.parentElement.classList.add('code-block-header');
+                    }
+                  }
+                });
               });
             </script>
         </head>
