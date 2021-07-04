@@ -1171,6 +1171,18 @@ body.modal-open {
     }
 }
 
+pre code.filename{
+    position: relative;
+    display: inline-block;
+    padding: 0 .25em;
+    background: rgba(0,0,0,0.07);
+    left: -16px;
+    top: -16px;
+}
+pre code.filename+ *{
+    display: block;
+}
+
 `;
 
 export default class MakeHTML {
@@ -1203,24 +1215,6 @@ export default class MakeHTML {
             <script>
               $(function(){
                 $('a[href^=http]').attr('target' , '_blank');
-              });
-
-              document.addEventListener('DOMContentLoaded', () => {
-                const code = document.getElementsByTagName('code');
-              
-                Array.from(code).forEach(el => {
-                  if (el.className) {
-                    const s = el.className.split(':');
-                    const highlightLang = s[0];
-                    const filename = s[1];
-                    if (filename) {
-                      el.classList.remove(el.className);
-                      el.classList.add(highlightLang);
-                      el.parentElement.setAttribute('data-lang', filename);
-                      el.parentElement.classList.add('code-block-header');
-                    }
-                  }
-                });
               });
             </script>
         </head>

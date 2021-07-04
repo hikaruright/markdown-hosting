@@ -3,15 +3,49 @@ import marked, { Renderer } from 'marked'
 import highlightjs from 'highlight.js'
 import readline from 'readline'
 
+const renderer = new marked.Renderer();
+renderer.code = function (
+    code: string,
+    fileInfo: string | undefined,
+    escaped: boolean
+): string {
+
+    const delimiter = ':';
+    const info = (fileInfo || '').split(delimiter);
+    const lang = info.shift();
+    const fileName = info.join(delimiter); // 2つ目以降のdelimiterはファイル名として扱う
+    let fileTag = '';
+
+    if (fileName) {
+      fileTag = '<code class="filename">'+fileName+'</code>'
+    }
+
+    if (this.options.highlight) {
+        const out = this.options.highlight(code, lang || '');
+        if (out != null && out !== code) {
+            escaped = true;
+            code = out;
+        }
+    }
+
+    if (!lang) {
+        return `<pre>${fileTag}<code>${escaped ? code : escape(code)}</code></pre>`;
+    }
+
+    return `
+    <pre>${fileTag}<code class="${this.options.langPrefix || ''}${escape(lang)}">${(escaped ? code : escape(code))}</code></pre>`;
+};
+
 marked.setOptions({
     highlight: function (code, lang) {
-        return highlightjs.highlightAuto(code, [lang]).value;
+        return highlightjs.highlightAuto(code, [lang.split(':')[0]]).value;
     },               // シンタックスハイライトに使用する関数の設定
     pedantic: false, // trueの場合はmarkdown.plに準拠する gfmを使用する場合はfalseで大丈夫
     gfm: true,       // GitHub Flavored Markdownを使用
     breaks: true,    // falseにすると改行入力は末尾の半角スペース2つになる
     // sanitize: true,  // trueにすると特殊文字をエスケープする
-    silent: false    // trueにするとパースに失敗してもExceptionを投げなくなる
+    silent: false,    // trueにするとパースに失敗してもExceptionを投げなくなる
+    renderer: renderer
 });
 
 /**
@@ -40,7 +74,7 @@ export default class MarkdownParser {
 
                 // Reading with each lines
                 let i = 0;
-                reader.on("line", (data) => {
+                reader.on('line', (data) => {
                     // console.log(data);
                     const regex = new RegExp(`^${target} .*`);
                     const match = data.match(regex);
