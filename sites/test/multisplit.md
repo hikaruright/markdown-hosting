@@ -8,7 +8,7 @@
 
 ### Code
 
-```javascript
+```javascript:sample.js
 let hello = 'hello world';
 console.log(hello);
 ```
