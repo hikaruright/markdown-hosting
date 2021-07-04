@@ -284,6 +284,12 @@ const css = `
     display: block;
     margin: 0 auto;
 }
+
+.markdown-body img[alt^=in] {
+    width: auto !important;
+    display: inline !important;
+}
+
 .markdown-body img[align="right"] {
     padding-left: 20px;
 }
