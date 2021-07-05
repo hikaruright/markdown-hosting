@@ -29,11 +29,10 @@ renderer.code = function (
     }
 
     if (!lang) {
-        return `<pre>${fileTag}<code>${escaped ? code : escape(code)}</code></pre>`;
+        return `<pre>${fileTag}<code>${code}</code></pre>`;
     }
 
-    return `
-    <pre>${fileTag}<code class="${this.options.langPrefix || ''}${escape(lang)}">${(escaped ? code : escape(code))}</code></pre>`;
+    return `<pre>${fileTag}<code class="${this.options.langPrefix || ''}${escape(lang)}">${code}</code></pre>`;
 };
 
 marked.setOptions({
