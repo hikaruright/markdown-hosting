@@ -284,6 +284,11 @@ const css = `
     display: block;
     margin: 0 auto;
 }
+.markdown-body img[alt^=in] {
+    display: inline;
+    width: auto;
+}
+
 .markdown-body img[align="right"] {
     padding-left: 20px;
 }
