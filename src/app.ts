@@ -88,10 +88,10 @@ app.get('/:site/:dir/list', async (req, resp) => {
     }
 });
 
-app.get('/:site/:dir/:file', async (req, resp) => {
+app.get(['/:site/:dir/:file', '/:site/:dir/:subdir/:file', '/:site/:dir/:subdir/:subsubdir/:file'], async (req, resp) => {
     const filename = req.params.file;
     const dir = req.params.dir;
-    let filePath = path.resolve(__dirname, '../', 'sites', req.params.site, dir, filename);
+    let filePath = path.resolve(__dirname, '../', 'sites', req.params.site, dir, req.params.subdir || '' ,req.params.subsubdir || '',  filename);
 
     if(filename.endsWith('.md')) {
         // nothing to do.

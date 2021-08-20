@@ -8,9 +8,36 @@
 
 ### Code
 
-```javascript
+```javascript:sample.js
+// こんにちはする
 let hello = 'hello world';
 console.log(hello);
+
+const jp = 'こんにちは、世界！';
+```
+
+```javascript
+// こんにちはする
+let hello = 'hello world';
+console.log(hello);
+
+const jp = 'こんにちは、世界！';
+```
+
+```
+// こんにちはする
+let hello = 'hello world';
+console.log(hello);
+
+const jp = 'こんにちは、世界！';
+```
+
+```console:実行結果
+こんにちは
+```
+
+```
+こんにちは
 ```
 
 ## Sample Link
