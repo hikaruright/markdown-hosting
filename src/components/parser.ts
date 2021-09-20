@@ -20,8 +20,8 @@ renderer.code = function (
       fileTag = '<code class="filename">'+fileName+'</code>'
     }
 
-    if (this.options.highlight) {
-        const out = this.options.highlight(code, lang || '');
+    if (renderer.options.highlight) {
+        const out = renderer.options.highlight(code, lang || '');
         if (out != null && out !== code) {
             escaped = true;
             code = out;
@@ -32,7 +32,7 @@ renderer.code = function (
         return `<pre>${fileTag}<code>${code}</code></pre>`;
     }
 
-    return `<pre>${fileTag}<code class="${this.options.langPrefix || ''}${escape(lang)}">${code}</code></pre>`;
+    return `<pre>${fileTag}<code class="${renderer.options.langPrefix || ''}${escape(lang)}">${code}</code></pre>`;
 };
 
 marked.setOptions({
