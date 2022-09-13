@@ -23,7 +23,7 @@ app.get('/:site/list', async (req, resp) => {
         const files = fs.readdirSync(dirPath).filter(val => val.endsWith('.md'))
     
         resp.send(MakeIndex.make(files, site));
-    }catch(e) {
+    } catch(e) {
         console.error(e);
         resp.status(404);
         resp.send('Error.');
@@ -81,7 +81,7 @@ app.get('/:site/:dir/list', async (req, resp) => {
         const files = fs.readdirSync(dirPath).filter(val => val.endsWith('.md'))
     
         resp.send(MakeIndex.make(files, site));
-    }catch(e) {
+    } catch(e) {
         console.error(e);
         resp.status(404);
         resp.send('Error.');
