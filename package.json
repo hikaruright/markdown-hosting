@@ -30,6 +30,6 @@
     "cheerio": "^1.0.0-rc.10",
     "express": "^4.17.1",
     "highlight.js": "^11.2.0",
-    "marked": "^3.0.4"
+    "marked": "^3.0.8"
   }
 }
